@@ -1,6 +1,6 @@
 const { CityRepository }= require('../repository/index');
 
-class CitySevice{
+class CityService{
     constructor(){
         this.cityRepository = new CityRepository();
     }
@@ -54,16 +54,5 @@ async getCity(cityId){
         throw {error};
     }
 }
-
-
-
-
-
-
-
-
-
-
-
 }
 module.exports = CityService;

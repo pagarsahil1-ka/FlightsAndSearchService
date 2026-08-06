@@ -1,67 +1,52 @@
-const{city} = require ('..models/index');
-class CityRepository{
+const { City } = require('../models/index');
 
-async CreateCity({name}){
-    try{
-    const city= await city.create({name});
-    return city;
-}
-   catch(error){
-        console.log("there has been an error")
+class CityRepository {
 
-    throw {error};
-   }
-
-
-
-
-}
-async DeleteCity(CityId){
-    try{
-        await city.destroy({
-            where:{
-            id:city.Id
-        }});
-        
+    async createCity({ name }) {
+        try {
+            const city = await City.create({ name });
+            return city;
+        } catch (error) {
+            console.log("there has been an error");
+            throw { error };
+        }
     }
-    catch(error){
-        console.log("there has been an error")
 
-        throw {error};
+    async deleteCity(cityId) {
+        try {
+            await City.destroy({
+                where: {
+                    id: cityId
+                }
+            });
+        } catch (error) {
+            console.log("there has been an error");
+            throw { error };
+        }
     }
-}
 
-async UpdateCity(CityId,data){
-    try{
-        await city.update(data,{
-            where:{
-            id:city.Id
-        }});
-        
+    async updateCity(cityId, data) {
+        try {
+            await City.update(data, {
+                where: {
+                    id: cityId
+                }
+            });
+        } catch (error) {
+            console.log("there has been an error");
+            throw { error };
+        }
     }
-    catch(error){
-        console.log("there has been an error")
 
-        throw {error};
-    }
-}
-
-
-
-
-async GetCity(CityId){
-    try{
-        const city= await CityId.findByPk(CityId);
-        return city;
-    }
-    catch(error){
-        console.log("there has been an error")
-        throw {error};
+    async getCity(cityId) {
+        try {
+            const city = await City.findByPk(cityId);
+            return city;
+        } catch (error) {
+            console.log("there has been an error");
+            throw { error };
+        }
     }
 }
 
-
-
-}
-
-module.export = CityRepository;
+module.exports = CityRepository;
