@@ -15,16 +15,14 @@ const create = async (req, res) => {
         });
 
     } catch (error) {
-        console.log(error);
+    console.log("FULL ERROR:");
+    console.dir(error, { depth: null });
 
-        return res.status(500).json({
-            data: {},
-            success: false,
-            message: "Not able to create city -controller error",
-            
-            err: error
-        });
-    }
+    return res.status(500).json({
+        success: false,
+        err: String(error)
+    });
+}
 };
 
 // DELETE -> /city/:id
@@ -99,9 +97,39 @@ const get = async (req, res) => {
     }
 };
 
+const getAll = async (req, res) => {
+    try {
+        const cities = await cityService.getAllCities();
+        
+
+        return res.status(200).json({
+            data: cities,
+            success: true,
+            message: "City fetched successfully",
+            err: {}
+        });
+
+    } catch (error) {
+        console.log(error);
+
+        return res.status(500).json({
+            data: {},
+            success: false,
+            message: "Not able to fetch city",
+            err: error
+        });
+    }
+};
+
+
+
+
+
+
 module.exports = {
     create,
     destroy,
     update,
-    get
+    get,
+    getAll
 };

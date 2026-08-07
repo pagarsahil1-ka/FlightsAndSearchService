@@ -1,58 +1,69 @@
-const { CityRepository }= require('../repository/index');
+const {CityRepository} = require('../repository/index');
 
-class CityService{
+class CityService {
     constructor(){
-        this.cityRepository = new CityRepository();
+        this.cityRepository=new CityRepository();
     }
 
-    
-    async createCity(data){
-    try{
-    const city= await this.cityRepository.createCity(data);
-    return city;
-}
-   catch(error){
-        console.log("there has been an error")
 
-    throw {error};
-   }
+async createCity(data){
+    try {
+        const city= await this.cityRepository.createCity(data);
+        return city;
+    } catch (error) {
+        console.log("there ha been an error at the service layer");
+        throw error;
+        
+    }
 
 }
+
+
 async deleteCity(cityId){
-    try{
-        const response= await this.cityRepository.deleteCity(cityId);
+    try {
+        const response = await this.cityRepository.deleteCity(cityId);
         return response;
+    } catch (error) {
+        console.log("there ha been an error at the service layer");
+        throw{error};
+        
     }
-    catch(error){
-        console.log("there has been an error")
 
-        throw {error};
-    }
 }
-
 async updateCity(cityId,data){
-    try{
-    const city= await this.cityRepository.updateCity(cityId,data);
-    return city;}
-    catch(error){
-        console.log("there has been an error")
-
-        throw {error};
+    try {
+        const city= await this.cityRepository.updateCity(cityId,data);
+    } catch (error) {
+        console.log("there ha been an error at the service layer");
+        throw{error};
+        
     }
+
 }
-
-
-
-
 async getCity(cityId){
-    try{
+    try {
         const city= await this.cityRepository.getCity(cityId);
         return city;
+    } catch (error) {
+        console.log("there ha been an error at the service layer");
+        throw{error};
+        
     }
-    catch(error){
-        console.log("there has been an error")
-        throw {error};
-    }
+
 }
+async getAllCities(){
+    try {
+        const cities = await this.cityRepository.getAllCities();
+        return cities;
+    } catch (error) {
+        console.log("there has been an error at the service layer");
+        throw error;
+        
+    }
+
+}
+
+
+
 }
 module.exports = CityService;
