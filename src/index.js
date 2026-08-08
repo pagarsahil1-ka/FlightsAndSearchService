@@ -5,6 +5,7 @@ const ApiRoutes = require('./routes/index')
 
 const setupandStartServer= async ()=>{
     const app = express();
+    
     app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
     
